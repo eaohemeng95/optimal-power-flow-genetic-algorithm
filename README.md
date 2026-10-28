@@ -53,4 +53,26 @@ $$
 
 where 
   - P_G is the total active power generated
-  - P_D is the total active power demand 
+  - P_D is the total active power demand
+
+# Operating Constraints
+The optimization considers the following categories of power-system constraints:
+- Generator active-power output limits.
+- Bus-voltage operating limits.
+- Transmission-line power-flow limits.
+- Active-power balance, including real power losses.
+- Other network constraints required by the selected power-flow formulation.
+  
+# Tools and Technologies
+- MATLAB
+- Genetic Algorithm optimization
+- Power-flow analysis
+- IEEE 30-bus test system
+
+# Research Context
+This work relates to power-system optimization, distributed generation, energy systems, and the application of evolutionary optimization algorithms to electrical engineering problems.
+The repository is intended to support continued learning, transparent research documentation, and further development of optimization methods for power systems.
+
+# Author
+Emmanuel Agyekum Ohemeng
+Electrical Engineering | Power Systems Optimization | Genetic Algorithms
