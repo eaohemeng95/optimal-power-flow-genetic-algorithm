@@ -52,7 +52,9 @@ These include:
 The original study considers two optimization objectives.
 # 6.1 Fuel Cost Minimization
 The total generator fuel cost is represented by a quadratic function:
-
+$$
+F = \sum_{i=1}^{N_g} \left(a_i P_{Gi}^{2} + b_i P_{Gi} + c_i\right)
+$$
 # 6.2 Real Power Loss Minimization
 The second objective is to minimize total real power losses in the network.
 For an AC power-flow model, losses will be calculated from the solved network flows using the selected power-flow solver.
