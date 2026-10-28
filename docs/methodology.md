@@ -10,16 +10,23 @@ The study investigates the application of a Genetic Algorithm (GA) to optimal po
 Optimal power flow determines suitable operating points for a power system while satisfying network and equipment constraints.
 The optimization variables and constraints must be consistent with the original project formulation and the available IEEE 30-bus network data.
 # 2.1 Fuel Cost Minimization
-The total generation fuel cost is represented by a quadratic function:
+The thesis defines the fuel-cost function as:
 
 $$
-F = \sum_{i=1}^{N_g} \left(a_i P_{Gi}^{2} + b_i P_{Gi} + c_i\right)
+F_{\mathrm{cost}}=\sum_{i=1}^{N_g} f_i(P_i)
 $$
 
 where:
-- (N_g) is the number of generators.
-- (P_{Gi}) is the active power output of generator (i).
-- (a_i), (b_i), and (c_i) are the generator fuel-cost coefficients.
+
+$$
+f_i(P_i)=a_iP_i^2+b_iP_i+c_i
+$$
+
+subject to:
+
+$$
+P_i^{\min}\leq P_i\leq P_i^{\max}
+$$
 
 The objective is to determine generator operating points that minimize total fuel cost while satisfying the relevant power-system constraints.
 # 2.2 Real Power Loss Minimization
@@ -57,29 +64,40 @@ The exact constraint expression depends on the line-limit data and the power-flo
 Total generation must balance total demand and network losses:
 
 $$
-P_D+P_{\text{loss}}
+\sum_i P_i=D+P_L
 $$
 
-where:
-- (P_D) is the total active-power demand.
-- (P_{\text{loss}}) is the total real power loss.
+where (D) is demand and (P_L) is real power loss.
 
 This relationship must be evaluated consistently with the selected power-flow solver.
 
-# 4. Genetic Algorithm
+# 4. Penalty Function
+The thesis describes converting the constrained optimization problem into an unconstrained problem using the penalty expression:
+
+$$
+\sum_i f_i(P_i) + 1000\left|\sum_i P_i-D-P_L\right|
+$$
+
+This expression is the penalty formulation documented in the thesis. Its exact implementation and its relationship to the separate power-loss objective must be verified before coding the final fitness function.
+
+# 5. Genetic Algorithm
 A Genetic Algorithm is a population-based optimization technique inspired by natural selection. Candidate solutions are evaluated using a fitness function, and successive generations are created using selection, crossover, and mutation.
 The original thesis reports the following GA settings:
 
 | Parameter | Reported setting | 
 | --- | --- | 
-| Population size  | 50 | 
+| Population size  | 50 |
+| Time limit  | 300 seconds |
+| Stall generation limit  | 50 |
+| Stall time limit  | 100 seconds |
 | Maximum generations | 200 | 
 | Crossover Ratio | 0.8 | 
 | Selection method | Roulette-wheel selection | 
 | Mutation method | Adaptive-feasible mutation | 
 | Constraint handling | Penalty approach | 
+| Stopping criterion  | Maximum generations exceeded |
 
-# 5. Optimization Procedure
+# 6. Optimization Procedure
 The planned MATLAB workflow is:
 1. Load the verified IEEE 30-bus network data.
 2. Load generator parameters and fuel-cost coefficients.
@@ -93,7 +111,7 @@ The planned MATLAB workflow is:
 10. Record the best candidate, objective value, constraint status, and convergence history.
 11. Compare the results with the values reported in the original thesis.
 
-# 6. Distributed Generation
+# 7. Distributed Generation
 Distributed generation is a central component of the research. Its exact representation must be recovered from the original thesis or MATLAB files before the optimization model is finalized.
 The following details remain to be verified:
 - Distributed-generation technology and mathematical model.
@@ -103,7 +121,7 @@ The following details remain to be verified:
 - Whether its output is optimized or held fixed.
 - Changes made to the original IEEE 30-bus test system.
 
-# 7. Reported Results and Validation
+# 8. Reported Results and Validation
 The original thesis reports the following changes:
 
 | Performance measure | Initial reported value | Final reported value | 
@@ -111,5 +129,5 @@ The original thesis reports the following changes:
 | Fuel Cost  | 899.2 | 801.9 | 
 | Real Power losses | 17 MW | 9.54 MW | 
 
-# 8. Reproducibility and Limitations
+# 9. Reproducibility and Limitations
 A reproducible implementation requires the original or documented replacement network data, generator cost coefficients, distributed-generation configuration, solver details, and software requirements.
