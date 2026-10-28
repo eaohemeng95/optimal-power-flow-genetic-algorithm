@@ -74,5 +74,5 @@ This work relates to power-system optimization, distributed generation, energy s
 The repository is intended to support continued learning, transparent research documentation, and further development of optimization methods for power systems.
 
 # Author
-Emmanuel Agyekum Ohemeng
+Emmanuel Agyekum Ohemeng. \
 Electrical Engineering | Power Systems Optimization | Genetic Algorithms
