@@ -37,3 +37,9 @@ F = \sum_{i=1}^{N_g} \left(a_i P_{Gi}^{2} + b_i P_{Gi} + c_i\right)
 $$
 
 where
+- (F) is the total generation cost.
+- (N_g) is the number of generators.
+- (P_{Gi}) is the active power output of generator (i).
+- (a_i), (b_i), and (c_i) are the generator cost coefficients.
+
+
