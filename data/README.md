@@ -86,5 +86,30 @@ Before reporting reproduced results, the implementation will document:
 - Units and base quantities.
 - Operating constraints.
 - Power-flow solver and software requirements.
+
+## Benchmark Dataset and Data Provenance
+
+### Selected network dataset
+The project will initially use the IEEE 30-bus test system supplied in MATPOWER as `case_ieee30.m`.
+**Source:** [MATPOWER — case_ieee30.m](https://github.com/MATPOWER/matpower/blob/master/data/case_ieee30.m)
+
+This dataset provides the network information required to establish a baseline power-flow model, including bus, generator, and transmission-branch data.
+
+### Important distinction
+The selected benchmark is an external reference dataset. Its use does not establish that every parameter matches the original undergraduate thesis.
+The following items must be verified against the thesis or its original simulation files:
+- Generator fuel-cost coefficients and active-power limits.
+- Distributed-generation technology, location, capacity, and operating assumptions.
+- The exact power-flow and optimization formulation used in the original MATLAB implementation.
+- Whether the original results can be reproduced using the selected dataset.
+
+### Planned data files
+- `case_ieee30.m` — benchmark network data, once downloaded and validated.
+- `generator_costs.csv` — generator cost data, after its source and units are verified.
+- `dg_configuration.csv` — distributed-generation assumptions, after they are established.
+
+### Reproducibility policy
+External benchmark data, thesis-reported values, and assumptions introduced during reconstruction will be documented separately. Thesis-reported results will not be described as independently reproduced until the implementation has been tested.
+
 - Any assumptions or modifications.
 
