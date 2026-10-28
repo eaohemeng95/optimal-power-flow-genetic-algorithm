@@ -69,6 +69,44 @@ The optimization considers the following categories of power-system constraints:
 - Power-flow analysis
 - IEEE 30-bus test system
 
+
+## Preliminary Results
+The Genetic Algorithm (GA) implementation was evaluated on the IEEE 30-bus test system using MATLAB and MATPOWER.
+
+| Performance Metric | Baseline | GA Result |
+|---|---:|---:|
+| Fuel cost | 9036.3 | 8918.8 |
+| Real power losses (MW) | 17.557 | 10.820 |
+
+### Observed Improvements
+
+- **Fuel-cost reduction:** approximately 1.30%.
+- **Real power-loss reduction:** approximately 38.37%.
+
+These values are preliminary results from the current implementation. They should not be interpreted as a verified reproduction of the original thesis results.
+
+## Constraint Validation and Limitations
+The preliminary constraint checks identified voltage-limit violations at buses 11 and 13 and a reactive-power-limit violation at generator 1.
+Additional limitations include:
+- The current optimization implementation minimizes fuel cost; simultaneous fuel-cost and power-loss minimization has not yet been established.
+- The optimization results have not yet been demonstrated to satisfy all electrical operating constraints.
+- Some branches in the supplied network case have no positive thermal rating specified, preventing finite thermal-limit validation for those branches.
+- The implementation is a reconstruction of the thesis methodology and is not claimed to reproduce the original MATLAB implementation exactly.
+
+Consequently, the reported results are preliminary and should not be presented as a fully constraint-feasible optimal power flow solution.
+
+## Reproducibility
+The implementation uses a fixed random seed to support repeatable GA runs under the same software environment and input data.
+To reproduce the experiment:
+1. Install MATLAB and MATPOWER.
+2. Add MATPOWER to the MATLAB path.
+3. Download or clone this repository.
+4. Set `projectRoot` to the local project directory.
+5. Run the project's main MATLAB script.
+6. Review the optimization results and constraint-validation reports.
+
+Results may vary with software versions, numerical solver settings, and changes to the input case.
+
 # Research Context
 This work relates to power-system optimization, distributed generation, energy systems, and the application of evolutionary optimization algorithms to electrical engineering problems.
 The repository is intended to support continued learning, transparent research documentation, and further development of optimization methods for power systems.
